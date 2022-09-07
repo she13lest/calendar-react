@@ -7,8 +7,6 @@
     display: flex;
     height: 100px;
     padding-left: 48px;
-    border: 2px solid #444;
-    font-weight: 700;
   }
 
   &__body {
@@ -35,13 +33,13 @@
   &__day {
     position: relative;
     flex: 1;
-    border-left: 2px solid #444;
+    border-left: 1px solid #eee;
   }
 
   &__time-slot {
     height: 59px;
     position: relative;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #eee;
   }
 
   &__day-label {
@@ -70,6 +68,6 @@
 .red-line {
   position: absolute;
   width: 100%;
-  border-top: 2px solid rgb(193, 113, 173);
+  border-top: 2px solid red;
   z-index: 5;
 }
