@@ -6,17 +6,78 @@
 }
 
 .create-event-btn {
-  padding: 0 16px;
+  background: radial-gradient(
+    ellipse farthest-corner at 50% 50%,
+    #fbc5e9,
+    rgb(68, 68, 68)
+  );
+  background: -webkit-radial-gradient(
+    ellipse farthest-corner at 50% 50%,
+    #fbc5e9,
+    #444
+  ); /* Фоновый цвет - радиальный градиент */
+  width: 110px; /* Ширина */
+  height: 40px; /* Высота */
+  padding: 10px; /* Внутренний отступ */
+  border-radius: 5px; /* Закругление уголков */
+  box-shadow: 0px 2px 4px; /* Тень */
+  display: inline-block; /* Встроенный элемент со свойствами блочного */
+  position: relative; /* Относительное позиционирование, для абсолютного позиционирования появляющегося текста */
+  text-decoration: none;
 
   &__icon {
     margin-right: 8px;
   }
 }
 
+.create-event-btn:after {
+  width: 80%; /* Ширина элемента */
+  color: rgb(0, 255, 162); /* Цвет текста */
+  font-family: "Monospace"; /* Шрифт текста */
+  content: attr(title); /* Текст берётся из атрибута title */
+  display: block; /* Блочный элемент */
+  font-size: 18px; /* Размер текста */
+  text-align: center; /* Выравнивание текста по центру */
+  opacity: 0; /* Невидимый */
+  position: absolute; /* Позиционируем абсолютно по центру родительского блока */
+  top: 50%;
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%; /* Точка начала трансформации по центру */
+  -webkit-transform: scale(0) translateY(-50%);
+  transform: scale(0) translateY(-50%); /* Масштаб 0 и отодвигаем в глубину */
+  -webkit-transition: all 550ms ease-in-out;
+  transition: all 550ms ease-in-out; /* Анимация. Для всех элементов (all), время действия 550ms, медленно начинается и заканчивается (ease-in-out) */
+  z-index: 3; /* Поверх всех элементов */
+}
+/* Эффект при наведении */
+.create-event-btn:hover:after {
+  opacity: 1; /* Видимый */
+  -webkit-transform: scale(1) translateY(-50%);
+  transform: scale(1) translateY(-50%); /* Масштаб 1 х 1 (scale(1)), расположение по центру в глубине */
+}
+
 .navigation {
   &__today-btn {
     margin-left: 32px;
     padding: 0 16px;
+    background: radial-gradient(
+      ellipse farthest-corner at 50% 50%,
+      #fbc5e9,
+      #444
+    );
+    background: -webkit-radial-gradient(
+      ellipse farthest-corner at 50% 50%,
+      #fbc5e9,
+      #444
+    );
+    width: 110px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
   }
 
   &__nav-icon {
