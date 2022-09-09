@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./components/header/Header.jsx";
 import Calendar from "./components/calendar/Calendar.jsx";
 import {
@@ -17,16 +17,21 @@ const App = () => {
   const displayMonth = getDisplayedMonth(weekStartDate);
 
   const nextWeek = () => {
-    setweekStartDate(moment(weekStartDate).add("days", 7));
+    setweekStartDate(moment(weekStartDate).add(1, "w"));
   };
 
   const previousWeek = () => {
-    setweekStartDate(moment(weekStartDate).subtract("days", 7));
+    setweekStartDate(moment(weekStartDate).subtract(1, "w"));
   };
 
   return (
     <>
-      <Header displayMonth={displayMonth} today={weekStartDate} />
+      <Header
+        displayMonth={displayMonth}
+        weekStartDate={weekStartDate}
+        nextWeek={nextWeek}
+        previousWeek={previousWeek}
+      />
       <Calendar weekDates={weekDates} />
     </>
   );
