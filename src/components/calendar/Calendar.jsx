@@ -7,9 +7,7 @@ import events from "../../gateway/events";
 
 import "./calendar.scss";
 
-const Calendar = ({ weekDates }) => {
-  const [listOfEvents, setEvents] = useState([]);
-
+const Calendar = ({ weekDates, listOfEvents }) => {
   return (
     <section className="calendar">
       <Navigation weekDates={weekDates} />

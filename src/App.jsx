@@ -12,6 +12,8 @@ import "./common.scss";
 const App = () => {
   const [weekStartDate, setweekStartDate] = useState(new Date());
 
+  const [listOfEvents, setEvents] = useState([]);
+
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
 
   const displayMonth = getDisplayedMonth(weekStartDate);
@@ -32,7 +34,7 @@ const App = () => {
         nextWeek={nextWeek}
         previousWeek={previousWeek}
       />
-      <Calendar weekDates={weekDates} />
+      <Calendar weekDates={weekDates} listOfEvents={listOfEvents} />
     </>
   );
 };
