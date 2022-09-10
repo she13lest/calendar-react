@@ -19,18 +19,22 @@ const App = () => {
   const displayMonth = getDisplayedMonth(weekStartDate);
 
   const nextWeek = () => {
-    setweekStartDate(moment(weekStartDate).add(1, "w"));
+    setweekStartDate(moment(weekStartDate).add(1, "w").toDate());
   };
 
   const previousWeek = () => {
-    setweekStartDate(moment(weekStartDate).subtract(1, "w"));
+    setweekStartDate(moment(weekStartDate).subtract(1, "w").toDate());
+  };
+
+  const today = () => {
+    setweekStartDate(new Date());
   };
 
   return (
     <>
       <Header
         displayMonth={displayMonth}
-        weekStartDate={weekStartDate}
+        today={today}
         nextWeek={nextWeek}
         previousWeek={previousWeek}
       />
