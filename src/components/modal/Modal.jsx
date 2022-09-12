@@ -1,6 +1,5 @@
 // import { is } from "core-js/library/es7/object";
-import React from "react";
-
+import React, { useState } from "react";
 import "./modal.scss";
 
 const Modal = ({ onCloseModal, isOpen }) => {
@@ -8,7 +7,13 @@ const Modal = ({ onCloseModal, isOpen }) => {
     return null;
   }
 
-  const handleChange = () => {};
+  const [modalForm, setModalForm] = useState({
+    title: "",
+    date: "",
+    startTime: "",
+    endTime: "",
+    description: "",
+  });
 
   return (
     <div className="modal overlay">
@@ -17,7 +22,7 @@ const Modal = ({ onCloseModal, isOpen }) => {
           <button className="create-event__close-btn" onClick={onCloseModal}>
             +
           </button>
-          <form className="event-form">
+          <form className="event-form" onChange={() => setModalForm(e)}>
             <input
               type="text"
               name="title"
@@ -30,7 +35,6 @@ const Modal = ({ onCloseModal, isOpen }) => {
                 type="time"
                 name="startTime"
                 className="event-form__field"
-                onChange={this.handleChange}
               />
               <span>-</span>
               <input type="time" name="endTime" className="event-form__field" />
