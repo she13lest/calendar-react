@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
+import "./navigation.scss";
 
 import { days } from "../../utils/dateUtils.js";
 

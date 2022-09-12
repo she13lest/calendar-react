@@ -1,13 +1,22 @@
+// import { is } from "core-js/library/es7/object";
 import React from "react";
 
 import "./modal.scss";
 
-const Modal = () => {
+const Modal = ({ onCloseModal, isOpen }) => {
+  if (!isOpen) {
+    return null;
+  }
+
+  const handleChange = () => {};
+
   return (
     <div className="modal overlay">
       <div className="modal__content">
         <div className="create-event">
-          <button className="create-event__close-btn">+</button>
+          <button className="create-event__close-btn" onClick={onCloseModal}>
+            +
+          </button>
           <form className="event-form">
             <input
               type="text"
