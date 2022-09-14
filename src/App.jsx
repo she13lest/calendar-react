@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/header/Header.jsx";
 import Calendar from "./components/calendar/Calendar.jsx";
 import Modal from "./components/modal/Modal.jsx";
@@ -7,6 +7,7 @@ import {
   generateWeekRange,
   getDisplayedMonth,
 } from "../src/utils/dateUtils.js";
+import { getEventList } from "./gateway/events";
 import moment from "moment";
 import "./common.scss";
 
@@ -15,11 +16,17 @@ const App = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const [listOfEvents, setEvents] = useState([]);
+  const [events, setEvents] = useState([]);
+
+  const fetchEvents = () => getEventList().then(setEvents);
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const displayMonth = getDisplayedMonth(weekStartDate);
 
+  // button for header
   const nextWeek = () => {
     setweekStartDate(moment(weekStartDate).add(1, "w").toDate());
   };
@@ -39,8 +46,12 @@ const App = () => {
         previousWeek={previousWeek}
         onOpenModal={() => setOpenModal(true)}
       />
-      <Calendar weekDates={weekDates} listOfEvents={listOfEvents} />
-      <Modal onCloseModal={() => setOpenModal(false)} isOpen={openModal} />
+      <Calendar weekDates={weekDates} events={events} />
+      <Modal
+        onCloseModal={() => setOpenModal(false)}
+        isOpen={openModal}
+        fetchEvents={fetchEvents}
+      />
     </>
   );
 };
