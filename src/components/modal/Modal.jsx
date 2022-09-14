@@ -7,7 +7,7 @@ const Modal = ({ onCloseModal, isOpen, fetchEvents }) => {
     return null;
   }
 
-  const [event, setEvent] = useState({
+  const [eventData, setEvent] = useState({
     title: "",
     date: new Date(),
     startTime: "",
@@ -17,15 +17,15 @@ const Modal = ({ onCloseModal, isOpen, fetchEvents }) => {
 
   const onChangeData = (e) => {
     const { name, value } = e.target;
-    setEvent({
-      ...event,
+    setEventData({
+      ...eventData,
       [name]: value,
     });
   };
 
-  const handleSubmit = (e, event) => {
+  const handleSubmit = (e, eventData) => {
     e.preventDefault();
-    const { title, date, startTime, endTime, description } = event;
+    const { title, date, startTime, endTime, description } = eventData;
 
     const newEvent = {
       title,
@@ -34,7 +34,7 @@ const Modal = ({ onCloseModal, isOpen, fetchEvents }) => {
       dateTo: new Date(`${date} ${endTime}`),
     };
 
-    createEvent(newEvent).then((response) => fetchEvents(response));
+    createEvent(newEvent).then(() => fetchEvents());
   };
 
   return (
