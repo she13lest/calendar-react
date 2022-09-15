@@ -7,7 +7,7 @@ import {
   generateWeekRange,
   getDisplayedMonth,
 } from "../src/utils/dateUtils.js";
-import { getEventList } from "./gateway/events";
+import { getEventList, createEvent } from "./gateway/events";
 import moment from "moment";
 import "./common.scss";
 
@@ -22,6 +22,21 @@ const App = () => {
   useEffect(() => {
     fetchEvents();
   }, []);
+
+  const handleSubmit = (e, eventData) => {
+    e.preventDefault();
+
+    const { title, date, startTime, endTime, description } = eventData;
+
+    const newEvent = {
+      title,
+      description,
+      dateFrom: new Date(`${date} ${startTime}`),
+      dateTo: new Date(`${date} ${endTime}`),
+    };
+
+    createEvent(newEvent).then(() => fetchEvents());
+  };
 
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const displayMonth = getDisplayedMonth(weekStartDate);
@@ -50,7 +65,7 @@ const App = () => {
       <Modal
         onCloseModal={() => setOpenModal(false)}
         isOpen={openModal}
-        fetchEvents={fetchEvents}
+        handleSubmit={handleSubmit}
       />
     </>
   );

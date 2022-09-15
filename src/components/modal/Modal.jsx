@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { createEvent } from "../../gateway/events";
+
 import "./modal.scss";
 
-const Modal = ({ onCloseModal, isOpen, fetchEvents }) => {
+const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
   if (!isOpen) {
     return null;
   }
 
-  const [eventData, setEvent] = useState({
+  const [eventData, setEventData] = useState({
     title: "",
-    date: new Date(),
+    date: "",
     startTime: "",
     endTime: "",
     description: "",
@@ -23,20 +23,6 @@ const Modal = ({ onCloseModal, isOpen, fetchEvents }) => {
     });
   };
 
-  const handleSubmit = (e, eventData) => {
-    e.preventDefault();
-    const { title, date, startTime, endTime, description } = eventData;
-
-    const newEvent = {
-      title,
-      description,
-      dateFrom: new Date(`${date} ${startTime}`),
-      dateTo: new Date(`${date} ${endTime}`),
-    };
-
-    createEvent(newEvent).then(() => fetchEvents());
-  };
-
   return (
     <div className="modal overlay">
       <div className="modal__content">
@@ -44,13 +30,17 @@ const Modal = ({ onCloseModal, isOpen, fetchEvents }) => {
           <button className="create-event__close-btn" onClick={onCloseModal}>
             +
           </button>
-          <form className="event-form" onSubmit={handleSubmit}>
+          <form
+            className="event-form"
+            onSubmit={(e) => handleSubmit(e, eventData)}
+          >
             <input
               value={title}
               type="text"
               name="title"
               placeholder="Title"
               className="event-form__field"
+              onChange={onChangeData}
             />
             <div className="event-form__time">
               <input
@@ -65,6 +55,7 @@ const Modal = ({ onCloseModal, isOpen, fetchEvents }) => {
                 type="time"
                 name="startTime"
                 className="event-form__field"
+                onChange={onChangeData}
               />
               <span>-</span>
               <input
@@ -72,6 +63,7 @@ const Modal = ({ onCloseModal, isOpen, fetchEvents }) => {
                 type="time"
                 name="endTime"
                 className="event-form__field"
+                onChange={onChangeData}
               />
             </div>
             <textarea
@@ -79,6 +71,7 @@ const Modal = ({ onCloseModal, isOpen, fetchEvents }) => {
               name="description"
               placeholder="Description"
               className="event-form__field"
+              onChange={onChangeData}
             ></textarea>
             <button type="submit" className="event-form__submit-btn">
               Create
