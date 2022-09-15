@@ -7,7 +7,7 @@ import {
   generateWeekRange,
   getDisplayedMonth,
 } from "../src/utils/dateUtils.js";
-import { getEventList, createEvent } from "./gateway/events";
+import { getEventList, createEvent, deleteEvent } from "./gateway/events";
 import moment from "moment";
 import "./common.scss";
 
@@ -61,7 +61,7 @@ const App = () => {
         previousWeek={previousWeek}
         onOpenModal={() => setOpenModal(true)}
       />
-      <Calendar weekDates={weekDates} events={events} />
+      <Calendar weekDates={weekDates} events={events} today={today} />
       <Modal
         onCloseModal={() => setOpenModal(false)}
         isOpen={openModal}

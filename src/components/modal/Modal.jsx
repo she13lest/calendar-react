@@ -15,17 +15,13 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
     description: "",
   });
 
-  const { title, description, date, startTime, endTime } = eventData;
-
   const onChangeData = (e) => {
-    e.preventDefault();
     const { name, value } = e.target;
     setEventData({
       ...eventData,
       [name]: value,
     });
   };
-  console.log(eventData);
 
   return (
     <div className="modal overlay">
@@ -34,12 +30,9 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
           <button className="create-event__close-btn" onClick={onCloseModal}>
             +
           </button>
-          <form
-            className="event-form"
-            onSubmit={(e) => handleSubmit(e, eventData)}
-          >
+          <form className="event-form">
             <input
-              value={title}
+              value={eventData.title}
               type="text"
               name="title"
               placeholder="Title"
@@ -51,11 +44,11 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
                 type="date"
                 name="date"
                 className="event-form__field"
-                value={date}
+                value={eventData.date}
                 onChange={onChangeData}
               />
               <input
-                value={startTime}
+                value={eventData.startTime}
                 type="time"
                 name="startTime"
                 className="event-form__field"
@@ -63,7 +56,7 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
               />
               <span>-</span>
               <input
-                value={endTime}
+                value={eventData.endTime}
                 type="time"
                 name="endTime"
                 className="event-form__field"
@@ -71,13 +64,17 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
               />
             </div>
             <textarea
-              value={description}
+              value={eventData.description}
               name="description"
               placeholder="Description"
               className="event-form__field"
               onChange={onChangeData}
             ></textarea>
-            <button type="submit" className="event-form__submit-btn">
+            <button
+              type="submit"
+              className="event-form__submit-btn"
+              onSubmit={(e) => handleSubmit(e, eventData)}
+            >
               Create
             </button>
           </form>
