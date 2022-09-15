@@ -15,13 +15,17 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
     description: "",
   });
 
+  const { title, description, date, startTime, endTime } = eventData;
+
   const onChangeData = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setEventData({
       ...eventData,
       [name]: value,
     });
   };
+  console.log(eventData);
 
   return (
     <div className="modal overlay">
