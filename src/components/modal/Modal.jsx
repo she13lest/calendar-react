@@ -21,6 +21,7 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
       ...eventData,
       [name]: value,
     });
+    console.log(eventData);
   };
 
   return (

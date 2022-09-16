@@ -3,6 +3,11 @@
   height: 60px;
   padding: 0 48px;
   align-items: center;
+  background: linear-gradient(
+    90deg,
+    rgb(14, 73, 169) 0%,
+    rgb(233, 244, 92) 70%
+  );
 }
 
 .create-event-btn {

@@ -38,6 +38,8 @@ const App = () => {
     createEvent(newEvent).then(() => fetchEvents());
   };
 
+  const onDeleteEvent = (id) => deleteEvent(id).then(() => fetchEvents());
+
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const displayMonth = getDisplayedMonth(weekStartDate);
 
@@ -61,7 +63,11 @@ const App = () => {
         previousWeek={previousWeek}
         onOpenModal={() => setOpenModal(true)}
       />
-      <Calendar weekDates={weekDates} events={events} today={today} />
+      <Calendar
+        weekDates={weekDates}
+        events={events}
+        onDeleteEvent={onDeleteEvent}
+      />
       <Modal
         onCloseModal={() => setOpenModal(false)}
         isOpen={openModal}
