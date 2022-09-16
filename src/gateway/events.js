@@ -5,7 +5,7 @@ export const getEventList = () =>
     if (response.ok) {
       return response.json();
     }
-    throw new Error("Error with data");
+    throw new Error("Internal Server Error. Can't display events");
   });
 
 export const createEvent = (event) => {

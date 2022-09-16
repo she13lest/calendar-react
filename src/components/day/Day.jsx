@@ -22,6 +22,7 @@ const Day = ({ onDeleteEvent, dataDay, dayEvents }) => {
             dataHour={hour}
             hourEvents={hourEvents}
             onDeleteEvent={onDeleteEvent}
+            dataDay={dataDay}
           />
         );
       })}
