@@ -9,17 +9,13 @@ const Week = ({ weekDates, events, onDeleteEvent }) => {
         const dayEnd = new Date(dayStart.getTime()).setHours(
           dayStart.getHours() + 24
         );
-        // const dayEvents = events.filter((event) => {
-        //   new Date(event.dateFrom) > new Date(dayStart) &&
-        //     new Date(event.dateTo) < new Date(dayEnd);
-        // });
 
         const dayEvents = events.filter(
           (event) =>
             new Date(event.dateFrom) > new Date(dayStart) &&
             new Date(event.dateTo) < new Date(dayEnd)
         );
-        console.log(dayEvents);
+        // console.log(dayEvents);
 
         return (
           <Day

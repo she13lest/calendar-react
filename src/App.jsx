@@ -36,9 +36,11 @@ const App = () => {
     };
 
     createEvent(newEvent).then((response) => fetchEvents(response));
+    setOpenModal(false);
   };
 
-  const onDeleteEvent = (id) => deleteEvent(id).then(() => fetchEvents());
+  const onDeleteEvent = (id) =>
+    deleteEvent(id).then((response) => fetchEvents(response));
 
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const displayMonth = getDisplayedMonth(weekStartDate);
@@ -68,11 +70,12 @@ const App = () => {
         events={events}
         onDeleteEvent={onDeleteEvent}
       />
-      <Modal
-        onCloseModal={() => setOpenModal(false)}
-        isOpen={openModal}
-        handleSubmit={handleSubmit}
-      />
+      {openModal && (
+        <Modal
+          onCloseModal={() => setOpenModal(false)}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </>
   );
 };

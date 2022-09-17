@@ -20,6 +20,7 @@ const Hour = ({ dataHour, dataDay, hourEvents, onDeleteEvent }) => {
         return (
           <Event
             key={id}
+            id={id}
             //calculating event height = duration of event in minutes
             height={
               (new Date(dateTo).getTime() - new Date(dateFrom).getTime()) /

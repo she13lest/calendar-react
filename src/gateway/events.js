@@ -18,7 +18,11 @@ export const createEvent = (event) => {
   });
 };
 
-export const deleteEvent = (eventId) =>
-  fetch(`${baseUrl}/${eventId}`, {
+export const deleteEvent = (id) =>
+  fetch(`${baseUrl}/${id}`, {
     method: "DELETE",
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error("Internal Server Error. Can't delete event");
+    }
   });

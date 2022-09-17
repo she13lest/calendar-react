@@ -2,11 +2,7 @@ import React, { useState } from "react";
 
 import "./modal.scss";
 
-const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
-  if (!isOpen) {
-    return null;
-  }
-
+const Modal = ({ onCloseModal, handleSubmit }) => {
   const [eventData, setEventData] = useState({
     title: "",
     date: "",
@@ -21,7 +17,7 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
       ...eventData,
       [name]: value,
     });
-    console.log(eventData);
+    // console.log(eventData);
   };
 
   return (
@@ -31,7 +27,10 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
           <button className="create-event__close-btn" onClick={onCloseModal}>
             +
           </button>
-          <form className="event-form">
+          <form
+            className="event-form"
+            onSubmit={(e) => handleSubmit(e, eventData)}
+          >
             <input
               value={eventData.title}
               type="text"
@@ -71,11 +70,7 @@ const Modal = ({ onCloseModal, isOpen, handleSubmit }) => {
               className="event-form__field"
               onChange={onChangeData}
             ></textarea>
-            <button
-              type="submit"
-              className="event-form__submit-btn"
-              onSubmit={(e) => handleSubmit(e, eventData)}
-            >
+            <button type="submit" className="event-form__submit-btn">
               Create
             </button>
           </form>
