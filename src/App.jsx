@@ -35,7 +35,7 @@ const App = () => {
       dateTo: new Date(`${date} ${endTime}`),
     };
 
-    createEvent(newEvent).then(() => fetchEvents());
+    createEvent(newEvent).then((response) => fetchEvents(response));
   };
 
   const onDeleteEvent = (id) => deleteEvent(id).then(() => fetchEvents());

@@ -9,11 +9,17 @@ const Week = ({ weekDates, events, onDeleteEvent }) => {
         const dayEnd = new Date(dayStart.getTime()).setHours(
           dayStart.getHours() + 24
         );
+        // const dayEvents = events.filter((event) => {
+        //   new Date(event.dateFrom) > new Date(dayStart) &&
+        //     new Date(event.dateTo) < new Date(dayEnd);
+        // });
 
-        //getting all events from the day we will render
         const dayEvents = events.filter(
-          (event) => event.dateFrom > dayStart && event.dateTo < dayEnd
+          (event) =>
+            new Date(event.dateFrom) > new Date(dayStart) &&
+            new Date(event.dateTo) < new Date(dayEnd)
         );
+        console.log(dayEvents);
 
         return (
           <Day
@@ -29,3 +35,4 @@ const Week = ({ weekDates, events, onDeleteEvent }) => {
 };
 
 export default Week;
+// (event) => event.dateFrom > dayStart && event.dateTo < dayEnd
